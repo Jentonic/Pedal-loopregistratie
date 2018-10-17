@@ -23,9 +23,9 @@
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <NavigationViewItem x:Uid="Shell_Home" Icon="Document" helpers:NavHelper.NavigateTo="Pedal_loopregistratie.ViewModels.HomeViewModel" />
-            <NavigationViewItem x:Uid="Shell_Residences" Icon="Document" helpers:NavHelper.NavigateTo="Pedal_loopregistratie.ViewModels.ResidencesViewModel" />
-            <NavigationViewItem x:Uid="Shell_Runners" Icon="Document" helpers:NavHelper.NavigateTo="Pedal_loopregistratie.ViewModels.RunnersViewModel" />
+            <NavigationViewItem x:Uid="Shell_Home" Icon="Home" helpers:NavHelper.NavigateTo="Pedal_loopregistratie.ViewModels.HomeViewModel" />
+            <NavigationViewItem x:Uid="Shell_Residences" Icon="Street" helpers:NavHelper.NavigateTo="Pedal_loopregistratie.ViewModels.ResidencesViewModel" />
+            <NavigationViewItem x:Uid="Shell_Runners" Icon="People" helpers:NavHelper.NavigateTo="Pedal_loopregistratie.ViewModels.RunnersViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>
