@@ -41,7 +41,12 @@ namespace Pedal_loopregistratie.Views
 
         private void AddRunnerToQueueButton_Click(object sender, RoutedEventArgs e)
         {
+            QueueService.AddRunner(ViewModel.Selected);
+        }
 
+        private void SearchRunner_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            ViewModel.Runners
         }
     }
 }

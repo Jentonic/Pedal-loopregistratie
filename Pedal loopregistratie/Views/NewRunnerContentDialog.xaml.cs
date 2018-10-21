@@ -42,7 +42,7 @@ namespace Pedal_loopregistratie.Views
         {
             if (!string.IsNullOrWhiteSpace(FirstName.Text) && !string.IsNullOrWhiteSpace(LastName.Text) && !string.IsNullOrWhiteSpace(Residence.SelectedItem.ToString()))
             {
-                var residence = DataService.ResolveResidenceFromName(Residence.SelectedItem.ToString());
+                var residence = DataService.ResolveResidenceFromNameAsync(Residence.SelectedItem.ToString()).Result;
                 var runner = new Runner
                 {
                     FirstName = FirstName.Text,
@@ -50,7 +50,7 @@ namespace Pedal_loopregistratie.Views
                     Residence = residence,
                     ResidenceId = residence.ResidenceId
                 };
-                DataService.AddNewRunner(runner);
+                DataService.AddNewRunnerAsync(runner);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Pedal_loopregistratie.Views
 
         private void ContentDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            var data = DataService.GetAllDistinctResidences();
+            var data = DataService.GetAllDistinctResidencesAsync().Result;
             foreach (var item in data)
             {
                 Residences.Add(item);

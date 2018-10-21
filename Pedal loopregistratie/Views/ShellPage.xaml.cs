@@ -2,7 +2,7 @@
 
 using Pedal_loopregistratie.Services;
 using Pedal_loopregistratie.ViewModels;
-
+using Pedal_loopregistratie_Model.Models;
 using Windows.Foundation.Metadata;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -33,6 +33,42 @@ namespace Pedal_loopregistratie.Views
             {
                 navigationView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed;
             }
+        }
+
+        #region Queue Commandhandlers
+        private void UpButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            if (QueueListView.SelectedItem != null)
+            {
+                QueueService.MoveUp((QueueRunner)QueueListView.SelectedItem);
+            }
+        }
+
+        private void DownButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            if (QueueListView.SelectedItem != null)
+            {
+                QueueService.MoveDown((QueueRunner)QueueListView.SelectedItem);
+            }
+        }
+
+        private void DeleteButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            if (QueueListView.SelectedItem != null)
+            {
+                QueueService.Remove((QueueRunner)QueueListView.SelectedItem);
+            }
+        }
+        #endregion
+
+        private void NextRunnerButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+
+        }
+
+        private void RefreshButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            QueueService.Refresh();
         }
     }
 }

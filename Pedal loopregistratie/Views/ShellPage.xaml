@@ -9,6 +9,7 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:data="using:Pedal_loopregistratie.Services"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -53,62 +54,91 @@
     </NavigationView>
         <controls:DockPanel Grid.Column="1"
                             LastChildFill="True">
-            <CommandBar controls:DockPanel.Dock="Bottom">
-                
+            
+            <StackPanel HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        controls:DockPanel.Dock="Top"
+                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                           Margin="12"
+                           Text="Huidige loper"
+                           TextAlignment="Center"
+                           TextWrapping="WrapWholeWords" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Grid.Column="0">
+                        <TextBlock>
+                            <Run Text="{x:Bind data:QueueService.CurrentRunner.Runner.Name}"></Run>
+                            <LineBreak/>
+                            <Run Text="{x:Bind data:QueueService.CurrentRunner.Runner.Residence.Name}"></Run>
+                        </TextBlock>
+                    </StackPanel>
+                    <Button Background="Transparent"
+                            Grid.Column="1"
+                            Name="NextRunnerButton"
+                            Click="NextRunnerButton_Click">
+                        <StackPanel>
+                            <FontIcon 
+                              FontFamily="Segoe MDL2 Assets"
+                              Glyph="&#xE768;"/>
+                            <TextBlock Text="Volgende loper"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+
+            <!--Commandbar-->
+            <CommandBar controls:DockPanel.Dock="Bottom"
+                        IsOpen="True"
+                        IsSticky="True">
+                <!--<AppBarButton Name="RefreshButton" Label="Refresh" Click="RefreshButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#x0E72C;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>-->
+                <AppBarButton Name="UpButton" Label="Verplaats omhoog" Click="UpButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#x0E70E;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Name="DownButton" Label="Verplaats omlaag" Click="DownButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#x0E70D;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Name="DeleteButton" Label="Verwijder" Click="DeleteButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#x0E74D;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </CommandBar>
+
+            <!--Queue Listview-->
             <ListView Name="QueueListView"
-                  controls:DockPanel.Dock="Top">
-                <ListView.Header>
-                    <controls:ScrollHeader Mode="QuickReturn">
-                            <Grid x:Name="MyHeaderGrid"
-                            MinHeight="250" >
-                                <!--Background="{ThemeResource }"-->
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock
-                                        Style="{StaticResource TitleTextBlockStyle}"
-                                        Margin="12"
-                                        Text="Huidige loper"
-                                        TextAlignment="Center"
-                                        TextWrapping="WrapWholeWords" />
-                        
-                                <TextBlock Margin="12,0,12,12"
-                                    VerticalAlignment="Center"
-                                    Foreground="White"
-                                    Text="The scroll header supports quick return, sticky and fade behavior. If fade is enabled the header fades out while scrolling down. If quick return is enabled the header hides when the ListView is scrolled down and reappears immediately as soon as the ListView is scrolled up again. If sticky is enabled the header is displayed regardless of scrolling."
-                                    TextAlignment="Center"
-                                    TextWrapping="WrapWholeWords" />
-                            </StackPanel>
-                        </Grid>
-                    </controls:ScrollHeader>
-                </ListView.Header>
+                      controls:DockPanel.Dock="Top"
+                      ItemsSource="{x:Bind data:QueueService.QueueRunners}"
+                      Background="{ThemeResource SystemControlAccentDark1AcrylicElementAccentDark1Brush}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid MinHeight="100" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="4*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <!--Position-->
+                            <TextBlock Text="{Binding Position}"
+                                       Margin="0,10,20,0"/>
+                            <!--Name and Residence-->
+                            <TextBlock>
+                                <Run Text="{Binding Runner.Name}"></Run>
+                                <LineBreak/>
+                                <Run Text="{Binding Runner.Residence.Name}"></Run>
+                            </TextBlock>
                             
-                            <!--Number in queue-->
-                            <TextBox Grid.Column="0"
-                                     Grid.RowSpan="2"
-                                     Grid.Row="0"
-                                     Text="Number"/>
-
-                            <!--Name-->
-                            <TextBox Grid.Column="1"
-                                     Grid.Row="0"
-                                     Text="Name"/>
-
-                            <!--Residence-->
-                            <TextBox Grid.Column="1"
-                                     Grid.Row="2"
-                                    Text="Residence"/>
-                        </Grid>
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.ItemContainerStyle>

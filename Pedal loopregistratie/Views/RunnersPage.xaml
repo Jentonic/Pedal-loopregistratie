@@ -50,13 +50,23 @@
             BorderBrush="Transparent" >
             
             <controls:MasterDetailsView.MasterCommandBar>
-                <CommandBar>
+                <CommandBar IsOpen="True"
+                            IsSticky="True">
                     <AppBarButton x:Name="NewRunnerAppBarButton" Icon="Add" Label="Nieuwe loper" Click="NewRunnerAppBarButton_Click"/>
+                    <CommandBar.Content>
+                        <AutoSuggestBox Name="SearchRunner"
+                                        PlaceholderText="Zoek loper"
+                                        TextChanged="SearchRunner_TextChanged"
+                                        QueryIcon="Find"
+                                        Margin="20,22,20,10"
+                                        Width="160"/>
+                    </CommandBar.Content>
                 </CommandBar>
             </controls:MasterDetailsView.MasterCommandBar>
 
             <controls:MasterDetailsView.DetailsCommandBar>
-                <CommandBar>
+                <CommandBar IsOpen="True"
+                            IsSticky="True">
                     <AppBarButton x:Name="AddRunnerToQueueButton" Icon="Play" Label="Toevoegen aan wachtrij" Click="AddRunnerToQueueButton_Click"/>
                 </CommandBar>
             </controls:MasterDetailsView.DetailsCommandBar>

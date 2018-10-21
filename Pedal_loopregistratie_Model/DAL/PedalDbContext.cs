@@ -34,7 +34,22 @@ namespace Pedal_loopregistratie_Model.DAL
 
         public void DoMigrate()
         {
-            //this.Database.Migrate();
+            this.Database.Migrate();
+
+            var res = this.Residences.FirstOrDefault(x => x.Name == "Hesteria");
+            var runner = new Runner()
+            {
+                RunnerId = 1,
+                FirstName = "Jenne",
+                LastName = "Baeten",
+                Residence = res,
+                ResidenceId = res.ResidenceId
+            };
+            if (this.Runners.Select(x => x).Where(x => x.RunnerId == 1).ToList().Count == 0)
+            {
+                this.Runners.Add(runner);
+                this.SaveChanges();
+            }
         }
     }
 }

@@ -115,7 +115,6 @@
     <Compile Include="Models\DragDropCompletedData.cs" />
     <Compile Include="Models\DragDropData.cs" />
     <Compile Include="Models\DragDropStartingData.cs" />
-    <Compile Include="Models\SampleOrder.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\DataService.cs" />
@@ -126,7 +125,6 @@
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\QueueService.cs" />
     <Compile Include="Services\ResidenceDataService.cs" />
-    <Compile Include="Services\SampleDataService.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\NewRunnerContentDialogViewModel.cs" />
     <Compile Include="ViewModels\ResidencesViewModel.cs" />
