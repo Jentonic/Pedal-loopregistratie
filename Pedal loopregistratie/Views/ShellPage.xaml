@@ -8,14 +8,20 @@
     xmlns:helpers="using:Pedal_loopregistratie.Helpers"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
-
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
     <NavigationView
         x:Name="navigationView"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
         IsSettingsVisible="False"
-        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
+        Grid.Column="0">
         <NavigationView.MenuItems>
             <!--
             TODO WTS: Change the symbols for each item as appropriate for your app
@@ -45,4 +51,74 @@
             <Frame x:Name="shellFrame" />
         </Grid>
     </NavigationView>
+        <controls:DockPanel Grid.Column="1"
+                            LastChildFill="True">
+            <CommandBar controls:DockPanel.Dock="Bottom">
+                
+            </CommandBar>
+            <ListView Name="QueueListView"
+                  controls:DockPanel.Dock="Top">
+                <ListView.Header>
+                    <controls:ScrollHeader Mode="QuickReturn">
+                            <Grid x:Name="MyHeaderGrid"
+                            MinHeight="250" >
+                                <!--Background="{ThemeResource }"-->
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock
+                                        Style="{StaticResource TitleTextBlockStyle}"
+                                        Margin="12"
+                                        Text="Huidige loper"
+                                        TextAlignment="Center"
+                                        TextWrapping="WrapWholeWords" />
+                        
+                                <TextBlock Margin="12,0,12,12"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Text="The scroll header supports quick return, sticky and fade behavior. If fade is enabled the header fades out while scrolling down. If quick return is enabled the header hides when the ListView is scrolled down and reappears immediately as soon as the ListView is scrolled up again. If sticky is enabled the header is displayed regardless of scrolling."
+                                    TextAlignment="Center"
+                                    TextWrapping="WrapWholeWords" />
+                            </StackPanel>
+                        </Grid>
+                    </controls:ScrollHeader>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid MinHeight="100" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="4*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <!--Number in queue-->
+                            <TextBox Grid.Column="0"
+                                     Grid.RowSpan="2"
+                                     Grid.Row="0"
+                                     Text="Number"/>
+
+                            <!--Name-->
+                            <TextBox Grid.Column="1"
+                                     Grid.Row="0"
+                                     Text="Name"/>
+
+                            <!--Residence-->
+                            <TextBox Grid.Column="1"
+                                     Grid.Row="2"
+                                    Text="Residence"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Padding" Value="12,12,24,12" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </controls:DockPanel>
+    
+    </Grid>
 </Page>

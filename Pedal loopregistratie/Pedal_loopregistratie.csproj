@@ -118,19 +118,26 @@
     <Compile Include="Models\SampleOrder.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\DragAndDrop\DragDropService.cs" />
     <Compile Include="Services\DragAndDrop\DropConfiguration.cs" />
     <Compile Include="Services\DragAndDrop\ListViewDropConfiguration.cs" />
     <Compile Include="Services\DragAndDrop\VisualDropConfiguration.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
+    <Compile Include="Services\QueueService.cs" />
+    <Compile Include="Services\ResidenceDataService.cs" />
     <Compile Include="Services\SampleDataService.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\NewRunnerContentDialogViewModel.cs" />
     <Compile Include="ViewModels\ResidencesViewModel.cs" />
     <Compile Include="ViewModels\RunnersViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewRunnerContentDialog.xaml.cs">
+      <DependentUpon>NewRunnerContentDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ResidencesDetailControl.xaml.cs">
       <DependentUpon>ResidencesDetailControl.xaml</DependentUpon>
@@ -179,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\NewRunnerContentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ResidencesDetailControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -209,7 +220,12 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Pedal_loopregistratie_Model\Pedal_loopregistratie_Model.csproj">
+      <Project>{8bdf3b45-4086-41eb-bd0b-3bf7ee61416c}</Project>
+      <Name>Pedal_loopregistratie_Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

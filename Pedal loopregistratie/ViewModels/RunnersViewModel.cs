@@ -9,20 +9,21 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 
 using Pedal_loopregistratie.Models;
 using Pedal_loopregistratie.Services;
+using Pedal_loopregistratie_Model;
 
 namespace Pedal_loopregistratie.ViewModels
 {
     public class RunnersViewModel : ViewModelBase
     {
-        private SampleOrder _selected;
+        private Runner _selected;
 
-        public SampleOrder Selected
+        public Runner Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<Runner> Runners { get; private set; } = new ObservableCollection<Runner>();
 
         public RunnersViewModel()
         {
@@ -30,18 +31,18 @@ namespace Pedal_loopregistratie.ViewModels
 
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
         {
-            SampleItems.Clear();
+            Runners.Clear();
 
-            var data = await SampleDataService.GetSampleModelDataAsync();
+            var data = await DataService.GetRunnersAsync();
 
             foreach (var item in data)
             {
-                SampleItems.Add(item);
+                Runners.Add(item);
             }
 
             if (viewState == MasterDetailsViewState.Both)
             {
-                Selected = SampleItems.First();
+                Selected = Runners.First();
             }
         }
     }

@@ -1,7 +1,8 @@
 ﻿using System;
 
 using Pedal_loopregistratie.Services;
-
+using Pedal_loopregistratie_Model;
+using Pedal_loopregistratie_Model.DAL;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
@@ -22,6 +23,35 @@ namespace Pedal_loopregistratie
 
             // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
             _activationService = new Lazy<ActivationService>(CreateActivationService);
+
+            // Replaced by static init method in dataservice
+            //using (var db = new PedalDbContext())
+            //{
+            //    db.DoMigrate();
+
+            //    // Ignore
+            //    // Testcode below
+
+            //    //var lele = "lele";
+            //    //var residence = new Residence { ResidenceId = 3, Name = "test", Description = "test", ImageString = "test" };
+            //    //db.Residences.Add(residence);
+            //    //db.SaveChanges();
+            //    //db.Residences.Remove(residence);
+            //    //db.SaveChanges();
+            //    //var lelele = "lelele";
+            //}
+            Initialise();
+
+            //Ugly testcode, move this to migration if enough time
+            //DataService.DbContext.Runners.Add(new Runner { FirstName = "Jenne", LastName = "Baeten", ResidenceId = 2 });
+            //DataService.DbContext.SaveChanges();
+        }
+
+        private void Initialise()
+        {
+            // Init services
+            DataService.Init();
+            QueueService.Init();
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)

@@ -11,7 +11,7 @@ namespace Pedal_loopregistratie_Model
         public int ResidenceId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        // image
+        public string ImageString { get; set; }
         public List<Runner> Runners { get; set; }
     }
 }

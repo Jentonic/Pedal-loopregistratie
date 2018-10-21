@@ -7,7 +7,7 @@
     Style="{StaticResource PageStyle}"
     DataContext="{Binding RunnersViewModel, Source={StaticResource Locator}}"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:model="using:Pedal_loopregistratie.Models"
+    xmlns:model="using:Pedal_loopregistratie_Model"
     xmlns:views="using:Pedal_loopregistratie.Views"
     mc:Ignorable="d">
     <Page.Transitions>
@@ -16,16 +16,16 @@
         </TransitionCollection>
     </Page.Transitions>
     <Page.Resources>
-        <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrder">
+        <DataTemplate x:Key="ItemTemplate" x:DataType="model:Runner">
             <Grid Height="64" Padding="0,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <FontIcon Grid.Column="0" FontSize="40" Glyph="{x:Bind Symbol}" VerticalAlignment="Center" />
+                <!--<FontIcon Grid.Column="0" FontSize="40" Glyph="{x:Bind Symbol}" VerticalAlignment="Center" />-->
                 <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
-                    <TextBlock Text="{x:Bind Company}" Style="{ThemeResource ListTitleStyle}"/>
-                    <TextBlock Text="{x:Bind Status}" Style="{StaticResource ListSubTitleStyle}"/>
+                    <TextBlock Text="{x:Bind Name}" Style="{ThemeResource ListTitleStyle}"/>
+                    <TextBlock Text="{x:Bind Residence.Name}" Style="{StaticResource ListSubTitleStyle}"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -42,11 +42,26 @@
     <Grid x:Name="ContentArea">
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
-            ItemsSource="{x:Bind ViewModel.SampleItems}"
+            ItemsSource="{x:Bind ViewModel.Runners}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
             ItemTemplate="{StaticResource ItemTemplate}"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
-            BorderBrush="Transparent" />
+            BorderBrush="Transparent" >
+            
+            <controls:MasterDetailsView.MasterCommandBar>
+                <CommandBar>
+                    <AppBarButton x:Name="NewRunnerAppBarButton" Icon="Add" Label="Nieuwe loper" Click="NewRunnerAppBarButton_Click"/>
+                </CommandBar>
+            </controls:MasterDetailsView.MasterCommandBar>
+
+            <controls:MasterDetailsView.DetailsCommandBar>
+                <CommandBar>
+                    <AppBarButton x:Name="AddRunnerToQueueButton" Icon="Play" Label="Toevoegen aan wachtrij" Click="AddRunnerToQueueButton_Click"/>
+                </CommandBar>
+            </controls:MasterDetailsView.DetailsCommandBar>
+        </controls:MasterDetailsView>
+
     </Grid>
+    
 </Page>

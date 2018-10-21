@@ -1,5 +1,7 @@
 ﻿using System;
-
+using System.Threading.Tasks;
+using Pedal_loopregistratie.Helpers;
+using Pedal_loopregistratie.Services;
 using Pedal_loopregistratie.ViewModels;
 
 using Windows.UI.Xaml;
@@ -23,6 +25,23 @@ namespace Pedal_loopregistratie.Views
         private async void RunnersPage_Loaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.LoadDataAsync(MasterDetailsViewControl.ViewState);
+        }
+
+        private async void NewRunnerAppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            NewRunnerContentDialog newRunnerContentDialog = new NewRunnerContentDialog();
+            ContentDialogResult result = await newRunnerContentDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                Frame.Navigate(typeof(RunnersPage), "Force refresh");
+                //var navserv = new NavigationServiceEx();
+                //navserv.Navigate();
+            }
+        }
+
+        private void AddRunnerToQueueButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

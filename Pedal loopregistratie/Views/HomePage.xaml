@@ -14,13 +14,13 @@
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
-            <TextBlock>
+            <!--<TextBlock>
                 Home page.
                 Content:
                 * Info over app
                 * Info over evenement
                 * Info over Pedal
-            </TextBlock>
+            </TextBlock>-->
         </Grid>
     </Grid>
 </Page>
