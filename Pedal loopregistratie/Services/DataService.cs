@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Pedal_loopregistratie_Model;
 using Pedal_loopregistratie_Model.DAL;
 using Pedal_loopregistratie_Model.Models;
@@ -23,14 +24,20 @@ namespace Pedal_loopregistratie.Services
         {
             //jezus, such shitcode (copied that from generated code example)
             await Task.CompletedTask;
-            return DbContext.Residences.Select(x => x).ToList();
+            return DbContext.Residences.Include("Runners").ToList();
         }
 
         public static async Task<IEnumerable<Runner>> GetRunnersAsync()
         {
             //jezus, such shitcode (copied that from generated code example)
             await Task.CompletedTask;
-            return DbContext.Runners.Select(x => x).ToList();
+            return DbContext.Runners.Include("Residence").Include("Laps").ToList();
+        }
+
+        public static async Task<IEnumerable<QueueRunner>> GetAllQueueRunnersAsync()
+        {
+            await Task.CompletedTask;
+            return DbContext.QueueRunners.Include("Runner").Include("Runner.Residence").OrderBy(x => x.Position).ToList();
         }
 
         public static async Task<List<string>> GetAllDistinctResidencesAsync()

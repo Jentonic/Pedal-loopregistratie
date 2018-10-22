@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace Pedal_loopregistratie.ViewModels
             set { Set(ref _selected, value); }
         }
 
+        public List<Runner> AllRunners { get; set; } = new List<Runner>();
         public ObservableCollection<Runner> Runners { get; private set; } = new ObservableCollection<Runner>();
 
         public RunnersViewModel()
@@ -38,11 +40,22 @@ namespace Pedal_loopregistratie.ViewModels
             foreach (var item in data)
             {
                 Runners.Add(item);
+                AllRunners.Add(item);
             }
 
             if (viewState == MasterDetailsViewState.Both)
             {
                 Selected = Runners.First();
+            }
+        }
+
+        public void Filter(string text)
+        {
+           var helper = AllRunners.Where(p => p.FirstName.Contains(text) || p.LastName.Contains(text) || p.Residence.Name.Contains(text)).Distinct();
+            Runners.Clear();
+            foreach (var item in helper)
+            {
+                Runners.Add(item);
             }
         }
     }

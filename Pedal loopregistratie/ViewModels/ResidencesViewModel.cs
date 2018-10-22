@@ -33,7 +33,8 @@ namespace Pedal_loopregistratie.ViewModels
         {
             Residences.Clear();
 
-            var data = await DataService.GetResidencesAsync();
+            var helper = await DataService.GetResidencesAsync();
+            var data = helper.OrderBy(x => x.Name).ToList();
 
             foreach (var item in data)
             {

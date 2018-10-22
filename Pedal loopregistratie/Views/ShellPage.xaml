@@ -10,6 +10,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:data="using:Pedal_loopregistratie.Services"
+    xmlns:views="using:Pedal_loopregistratie.Views"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -52,10 +53,16 @@
             <Frame x:Name="shellFrame" />
         </Grid>
     </NavigationView>
-        <controls:DockPanel Grid.Column="1"
-                            LastChildFill="True">
+
+        <views:QueuePage
+            Grid.Column="1">
+
+        </views:QueuePage>
+
+        <!--<controls:DockPanel Grid.Column="1"
+                            LastChildFill="True">-->
             
-            <StackPanel HorizontalAlignment="Stretch"
+            <!--<StackPanel HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         controls:DockPanel.Dock="Top"
                         Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
@@ -74,9 +81,9 @@
                                 VerticalAlignment="Center"
                                 Grid.Column="0">
                         <TextBlock>
-                            <Run Text="{x:Bind data:QueueService.CurrentRunner.Runner.Name}"></Run>
+                            <Run Text="{x:Bind data:QueueService.CurrentRunner.QueueRunner.Runner.Name}"></Run>
                             <LineBreak/>
-                            <Run Text="{x:Bind data:QueueService.CurrentRunner.Runner.Residence.Name}"></Run>
+                            <Run Text="{x:Bind data:QueueService.CurrentRunner.QueueRunner.Runner.Residence.Name}"></Run>
                         </TextBlock>
                     </StackPanel>
                     <Button Background="Transparent"
@@ -94,15 +101,15 @@
 
             </StackPanel>
 
-            <!--Commandbar-->
+            --><!--Commandbar--><!--
             <CommandBar controls:DockPanel.Dock="Bottom"
                         IsOpen="True"
                         IsSticky="True">
-                <!--<AppBarButton Name="RefreshButton" Label="Refresh" Click="RefreshButton_Click">
+                --><!--<AppBarButton Name="RefreshButton" Label="Refresh" Click="RefreshButton_Click">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#x0E72C;"/>
                     </AppBarButton.Icon>
-                </AppBarButton>-->
+                </AppBarButton>--><!--
                 <AppBarButton Name="UpButton" Label="Verplaats omhoog" Click="UpButton_Click">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#x0E70E;"/>
@@ -120,7 +127,7 @@
                 </AppBarButton>
             </CommandBar>
 
-            <!--Queue Listview-->
+            --><!--Queue Listview--><!--
             <ListView Name="QueueListView"
                       controls:DockPanel.Dock="Top"
                       ItemsSource="{x:Bind data:QueueService.QueueRunners}"
@@ -128,10 +135,10 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <!--Position-->
+                            --><!--Position--><!--
                             <TextBlock Text="{Binding Position}"
                                        Margin="0,10,20,0"/>
-                            <!--Name and Residence-->
+                            --><!--Name and Residence--><!--
                             <TextBlock>
                                 <Run Text="{Binding Runner.Name}"></Run>
                                 <LineBreak/>
@@ -148,7 +155,7 @@
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
-        </controls:DockPanel>
+        </controls:DockPanel>-->
     
     </Grid>
 </Page>

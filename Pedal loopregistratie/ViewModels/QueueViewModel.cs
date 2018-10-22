@@ -1,4 +1,7 @@
-﻿using Pedal_loopregistratie_Model;
+﻿using GalaSoft.MvvmLight;
+using Pedal_loopregistratie.Models;
+using Pedal_loopregistratie.Services;
+using Pedal_loopregistratie_Model;
 using Pedal_loopregistratie_Model.Models;
 using System;
 using System.Collections.Generic;
@@ -6,34 +9,28 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using GalaSoft.MvvmLight;
-using Pedal_loopregistratie.Models;
 
-namespace Pedal_loopregistratie.Services
+namespace Pedal_loopregistratie.ViewModels
 {
-    public static class QueueService
+    public class QueueViewModel : ViewModelBase
     {
-        public static List<QueueRunner> AllQueueRunners;
+        public List<QueueRunner> AllQueueRunners { get; private set; } = new List<QueueRunner>();
 
-        public static ObservableCollection<QueueRunner> QueueRunners;
+        public ObservableCollection<QueueRunner> QueueRunners { get; private set; } = new ObservableCollection<QueueRunner>();
 
         //CurrentRunner has position 0
-        public static ObservableQueueRunner CurrentRunner { get; set; }
+        public ObservableQueueRunner CurrentRunner { get; private set; } = new ObservableQueueRunner();
 
-        public static void Init()
+        public async void InitAsync()
         {
-            AllQueueRunners = new List<QueueRunner>();
-            QueueRunners = new ObservableCollection<QueueRunner>();
-            CurrentRunner = new ObservableQueueRunner();
-
+            await Task.CompletedTask;
             UpdateCollections();
         }
-        public static void UpdateCollections()
+        public void UpdateCollections()
         {
             //DataService get all
-            var data = DataService.DbContext.QueueRunners.Include("Runner").Include("Runner.Residence").OrderBy(x => x.Position).ToList();
-            DataService.DbContext.
+            var data = DataService.GetAllQueueRunnersAsync().Result.ToList();
+
             //Reset
             AllQueueRunners.Clear();
             QueueRunners.Clear();
@@ -54,7 +51,7 @@ namespace Pedal_loopregistratie.Services
             }
         }
 
-        public static void AddRunner(Runner runner)
+        public void AddRunner(Runner runner)
         {
             var insert = new QueueRunner { Position = QueueRunners.Count + 1, Runner = runner, RunnerId = runner.RunnerId };
 
@@ -71,7 +68,7 @@ namespace Pedal_loopregistratie.Services
             //QueueRunners.Add(data);
         }
 
-        public static void QueueNextRunner()
+        public void QueueNextRunner()
         {
             //Update all position in the queue
             var helper = QueueRunners.ToList();
@@ -95,10 +92,10 @@ namespace Pedal_loopregistratie.Services
 
         private static void RegisterRun()
         {
-            
+
         }
 
-        public static void MoveUp(QueueRunner selectedItem)
+        public void MoveUp(QueueRunner selectedItem)
         {
             var index = selectedItem.Position;
 
@@ -111,7 +108,7 @@ namespace Pedal_loopregistratie.Services
             var other = helper[index - 2];
 
             //Switch positions
-            selectedItem.Position -= 1; 
+            selectedItem.Position -= 1;
             other.Position += 1;
 
             //Switch indexes in List
@@ -132,7 +129,7 @@ namespace Pedal_loopregistratie.Services
         }
 
         //do not use Refresh or implement AllQueueRunners (use it like updatecollections)
-        public static void Refresh()
+        public void Refresh()
         {
             var helper = QueueRunners.ToList().OrderBy(x => x.Position);
             QueueRunners.Clear();
@@ -142,7 +139,7 @@ namespace Pedal_loopregistratie.Services
             }
         }
 
-        public static void MoveDown(QueueRunner selectedItem)
+        public void MoveDown(QueueRunner selectedItem)
         {
             var index = selectedItem.Position;
 
@@ -174,7 +171,7 @@ namespace Pedal_loopregistratie.Services
             UpdateCollections();
         }
 
-        public static void Remove(QueueRunner selectedItem)
+        public void Remove(QueueRunner selectedItem)
         {
             //Placeholder
             var helper = QueueRunners.ToList();
@@ -201,3 +198,4 @@ namespace Pedal_loopregistratie.Services
         }
     }
 }
+

@@ -115,6 +115,7 @@
     <Compile Include="Models\DragDropCompletedData.cs" />
     <Compile Include="Models\DragDropData.cs" />
     <Compile Include="Models\DragDropStartingData.cs" />
+    <Compile Include="Models\ObservableQueueRunner.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\DataService.cs" />
@@ -125,8 +126,10 @@
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\QueueService.cs" />
     <Compile Include="Services\ResidenceDataService.cs" />
+    <Compile Include="ViewModels\CurrentRunnerViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\NewRunnerContentDialogViewModel.cs" />
+    <Compile Include="ViewModels\QueueViewModel.cs" />
     <Compile Include="ViewModels\ResidencesViewModel.cs" />
     <Compile Include="ViewModels\RunnersViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
@@ -136,6 +139,9 @@
     </Compile>
     <Compile Include="Views\NewRunnerContentDialog.xaml.cs">
       <DependentUpon>NewRunnerContentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QueuePage.xaml.cs">
+      <DependentUpon>QueuePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ResidencesDetailControl.xaml.cs">
       <DependentUpon>ResidencesDetailControl.xaml</DependentUpon>
@@ -185,6 +191,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NewRunnerContentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QueuePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

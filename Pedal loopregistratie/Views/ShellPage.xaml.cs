@@ -35,40 +35,41 @@ namespace Pedal_loopregistratie.Views
             }
         }
 
-        #region Queue Commandhandlers
-        private void UpButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            if (QueueListView.SelectedItem != null)
-            {
-                QueueService.MoveUp((QueueRunner)QueueListView.SelectedItem);
-            }
-        }
+        //#region Queue Commandhandlers
+        //private void UpButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        //{
+        //    if (QueueListView.SelectedItem != null)
+        //    {
+        //        QueueService.MoveUp((QueueRunner)QueueListView.SelectedItem);
+        //    }
+        //}
 
-        private void DownButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            if (QueueListView.SelectedItem != null)
-            {
-                QueueService.MoveDown((QueueRunner)QueueListView.SelectedItem);
-            }
-        }
+        //private void DownButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        //{
+        //    if (QueueListView.SelectedItem != null)
+        //    {
+        //        QueueService.MoveDown((QueueRunner)QueueListView.SelectedItem);
+        //    }
+        //}
 
-        private void DeleteButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            if (QueueListView.SelectedItem != null)
-            {
-                QueueService.Remove((QueueRunner)QueueListView.SelectedItem);
-            }
-        }
-        #endregion
+        //private void DeleteButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        //{
+        //    if (QueueListView.SelectedItem != null)
+        //    {
+        //        QueueService.Remove((QueueRunner)QueueListView.SelectedItem);
+        //    }
+        //}
+        
 
-        private void NextRunnerButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
+        //private void NextRunnerButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        //{
+        //    QueueService.QueueNextRunner();
+        //}
 
-        }
-
-        private void RefreshButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            QueueService.Refresh();
-        }
+        //private void RefreshButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        //{
+        //    QueueService.Refresh();
+        //}
+        //#endregion
     }
 }
