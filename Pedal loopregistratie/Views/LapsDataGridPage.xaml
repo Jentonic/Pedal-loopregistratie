@@ -25,7 +25,7 @@
                     <controls:DataGridTextColumn Header="Voornaam" Binding="{Binding Runner.FirstName}"  />
                     <controls:DataGridTextColumn Header="Achternaam" Binding="{Binding Runner.LastName}" />
                     <controls:DataGridTextColumn Header="Residentie" Binding="{Binding Runner.Residence.Name}" />
-                    <controls:DataGridTextColumn Header="OrderTotal" Binding="{Binding Time }" />
+                    <controls:DataGridTextColumn Header="Tijd" Binding="{Binding Time }" />
                     <!--<controls:DataGridTextColumn Header="Status" Binding="{Binding Status}"  />-->
                     <!--<controls:DataGridTemplateColumn Header="Symbol">
                         <controls:DataGridTemplateColumn.CellTemplate>
