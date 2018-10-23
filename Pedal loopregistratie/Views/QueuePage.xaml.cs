@@ -70,7 +70,7 @@ namespace Pedal_loopregistratie.Views
 
         private void RefreshButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            ViewModel.Refresh();
+            //ViewModel.Refresh();
         }
         #endregion
     }

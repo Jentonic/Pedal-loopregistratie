@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using GalaSoft.MvvmLight;
-
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 
 using Pedal_loopregistratie.Models;
@@ -57,6 +57,11 @@ namespace Pedal_loopregistratie.ViewModels
             {
                 Runners.Add(item);
             }
+        }
+
+        public void NotifyQueue()
+        {
+            MessengerInstance.Send<NotificationMessage>(new NotificationMessage("New runner in queue"));
         }
     }
 }

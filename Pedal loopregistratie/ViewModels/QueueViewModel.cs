@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Pedal_loopregistratie.Models;
 using Pedal_loopregistratie.Services;
 using Pedal_loopregistratie_Model;
@@ -6,26 +7,57 @@ using Pedal_loopregistratie_Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Pedal_loopregistratie.ViewModels
 {
-    public class QueueViewModel : ViewModelBase
+    public class QueueViewModel : ViewModelBase, INotifyPropertyChanged
     {
         public List<QueueRunner> AllQueueRunners { get; private set; } = new List<QueueRunner>();
 
         public ObservableCollection<QueueRunner> QueueRunners { get; private set; } = new ObservableCollection<QueueRunner>();
 
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
         //CurrentRunner has position 0
-        public ObservableQueueRunner CurrentRunner { get; private set; } = new ObservableQueueRunner();
+        private QueueRunner currentRunner;
+        public QueueRunner CurrentRunner {
+            get
+            {
+                return currentRunner;
+            }
+            set
+            {
+                currentRunner = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public QueueViewModel()
+        {
+            MessengerInstance.Register<NotificationMessage>(this, NotifyMe);
+        }
+
+        public void NotifyMe(NotificationMessage notificationMessage)
+        {
+            UpdateCollections();
+        }
 
         public async void InitAsync()
         {
             await Task.CompletedTask;
             UpdateCollections();
         }
+
         public void UpdateCollections()
         {
             //DataService get all
@@ -44,7 +76,7 @@ namespace Pedal_loopregistratie.ViewModels
                         QueueRunners.Add(item);
 
                     if (item.Position == 0)
-                        CurrentRunner.QueueRunner = item;
+                        CurrentRunner = item;
 
                     AllQueueRunners.Add(item);
                 }
@@ -81,10 +113,10 @@ namespace Pedal_loopregistratie.ViewModels
             DataService.UpdateQueueAsync(helper);
 
             //Register run and Update database
-            if (CurrentRunner != null && CurrentRunner.QueueRunner != null)
+            if (CurrentRunner != null && CurrentRunner != null)
             {
                 RegisterRun();
-                DataService.RemoveFromQueueAsync(CurrentRunner.QueueRunner);
+                DataService.RemoveFromQueueAsync(CurrentRunner);
             }
 
             UpdateCollections();

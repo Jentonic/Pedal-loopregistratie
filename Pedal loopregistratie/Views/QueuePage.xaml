@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <controls:DockPanel Grid.Column="1"
+    <controls:DockPanel Width="300"
                         LastChildFill="True">
 
         <StackPanel HorizontalAlignment="Stretch"
@@ -24,17 +24,18 @@
                        TextWrapping="WrapWholeWords" />
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Grid.Column="0">
                     <TextBlock>
-                            <Run Text="{x:Bind ViewModel.CurrentRunner.QueueRunner.Runner.Name}"></Run>
-                            <LineBreak/>
-                            <Run Text="{x:Bind ViewModel.CurrentRunner.QueueRunner.Runner.Residence.Name}"></Run>
+                        <LineBreak/>
+                        <Run Text="{x:Bind ViewModel.CurrentRunner.Runner.Name, Mode=OneWay}"></Run>
+                        <LineBreak/>
+                        <Run Text="{x:Bind ViewModel.CurrentRunner.Runner.Residence.Name, Mode=OneWay}"></Run>
                     </TextBlock>
                 </StackPanel>
                 <Button Background="Transparent"
@@ -90,9 +91,9 @@
                                        Margin="0,10,20,0"/>
                         <!--Name and Residence-->
                         <TextBlock>
-                                <Run Text="{Binding Runner.Name}"></Run>
+                                <Run Text="{Binding Runner.Name, Mode=OneWay}"></Run>
                                 <LineBreak/>
-                                <Run Text="{Binding Runner.Residence.Name}"></Run>
+                                <Run Text="{Binding Runner.Residence.Name, Mode=OneWay}"></Run>
                         </TextBlock>
 
                     </StackPanel>

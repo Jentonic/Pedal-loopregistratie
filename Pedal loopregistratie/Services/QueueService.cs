@@ -33,10 +33,9 @@ namespace Pedal_loopregistratie.Services
         {
             //DataService get all
             var data = DataService.DbContext.QueueRunners.Include("Runner").Include("Runner.Residence").OrderBy(x => x.Position).ToList();
-            DataService.DbContext.
             //Reset
-            AllQueueRunners.Clear();
-            QueueRunners.Clear();
+            //AllQueueRunners.Clear();
+            //QueueRunners.Clear();
 
             if (data.Count > 0)
             {
@@ -56,13 +55,16 @@ namespace Pedal_loopregistratie.Services
 
         public static void AddRunner(Runner runner)
         {
-            var insert = new QueueRunner { Position = QueueRunners.Count + 1, Runner = runner, RunnerId = runner.RunnerId };
+            int position = 0;
+            if(DataService.DbContext.QueueRunners.Select(x => x).Count() != 0)
+                position = DataService.DbContext.QueueRunners.Max(x => x.Position);
+            var insert = new QueueRunner { Position = position + 1, Runner = runner, RunnerId = runner.RunnerId };
 
             // insert into database to track
             DataService.DbContext.QueueRunners.Add(insert);
             DataService.DbContext.SaveChanges();
 
-            UpdateCollections();
+            //UpdateCollections();
 
             //// look up new entry to get the ID (return the whole object)
             //var data = DataService.DbContext.QueueRunners.Select(x => x).Where(x => x.Position == QueueRunners.Count + 1 && x.RunnerId == runner.RunnerId).First();
