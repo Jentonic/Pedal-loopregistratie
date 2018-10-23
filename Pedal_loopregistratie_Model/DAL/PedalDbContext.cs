@@ -50,6 +50,17 @@ namespace Pedal_loopregistratie_Model.DAL
                 this.Runners.Add(runner);
                 this.SaveChanges();
             }
+            var residence = new Residence()
+            {
+                ResidenceId = 9,
+                Name = "Justus Lipsius",
+                Description = ""
+            };
+            if (this.Residences.Select(x => x).Where(x => x.ResidenceId == 9).ToList().Count == 0)
+            {
+                this.Residences.Add(residence);
+                this.SaveChanges();
+            }
         }
     }
 }

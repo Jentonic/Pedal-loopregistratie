@@ -51,7 +51,7 @@ namespace Pedal_loopregistratie.ViewModels
 
         public void Filter(string text)
         {
-           var helper = AllRunners.Where(p => p.FirstName.Contains(text) || p.LastName.Contains(text) || p.Residence.Name.Contains(text)).Distinct();
+           var helper = AllRunners.Where(p => p.FirstName.ToLower().Contains(text.ToLower()) || p.LastName.ToLower().Contains(text.ToLower()) || p.Residence.Name.ToLower().Contains(text.ToLower())).Distinct();
             Runners.Clear();
             foreach (var item in helper)
             {

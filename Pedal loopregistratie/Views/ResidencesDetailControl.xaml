@@ -39,8 +39,8 @@
                     Header="Aantal Rondes"
                     IsReadOnly="True"/>
                 
-                <TextBlock Text="Beschrijving" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <TextBlock Text="{x:Bind MasterMenuItem.Description, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
+                <!--<TextBlock Text="Beschrijving" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <TextBlock Text="{x:Bind MasterMenuItem.Description, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />-->
 
                 <!--<TextBlock Text="Aantal lopers" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,8,0,0"/>
                 <TextBlock Text="{x:Bind MasterMenuItem.Runners.Count.ToString(), Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />-->
