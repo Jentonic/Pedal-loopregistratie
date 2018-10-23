@@ -10,7 +10,7 @@
     d:DesignWidth="400">
     <ScrollViewer Name="ForegroundElement" VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" Padding="12,0">
         <StackPanel HorizontalAlignment="Left">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,8,0,0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0,8,0,0">
                 <!--<FontIcon
                     FontSize="40"
                     Glyph="{x:Bind MasterMenuItem.Symbol, Mode=OneWay}"
@@ -22,6 +22,10 @@
                     Style="{StaticResource SubheaderTextBlockStyle}" />
             </StackPanel>
             <StackPanel Name="block" Padding="0,15,0,0">
+                <TextBlock Text="Aantal rondjes"/>
+                <TextBlock x:Name="Laps">
+                    <Run Text="{x:Bind MasterMenuItem.Laps.Count}"></Run>
+                </TextBlock>
                 <!--<TextBlock Text="Status" Style="{StaticResource SubtitleTextBlockStyle}"/>
                 <TextBlock Text="{x:Bind MasterMenuItem.Status, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
                 <TextBlock Text="Order date" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,8,0,0"/>

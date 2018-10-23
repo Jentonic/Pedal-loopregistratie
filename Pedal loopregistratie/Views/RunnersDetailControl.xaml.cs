@@ -11,8 +11,25 @@ namespace Pedal_loopregistratie.Views
     {
         public Runner MasterMenuItem
         {
-            get { return GetValue(MasterMenuItemProperty) as Runner; }
+            get
+            {
+                if (counter == 0)
+                {
+                    OnPropertyChanged();
+                    counter--;
+                }
+                return GetValue(MasterMenuItemProperty) as Runner;
+            }
             set { SetValue(MasterMenuItemProperty, value); }
+        }
+
+        private static int counter = 0;
+
+        private void OnPropertyChanged()
+        {
+            counter++;
+            if(MasterMenuItem != null)
+                Laps.Text = MasterMenuItem.Laps.Count.ToString();
         }
 
         public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(Runner), typeof(RunnersDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));

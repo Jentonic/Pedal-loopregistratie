@@ -37,7 +37,7 @@ namespace Pedal_loopregistratie.Services
         {
             //jezus, such shitcode (copied that from generated code example)
             await Task.CompletedTask;
-            return DbContext.Runners.Include("Residence").Include("Laps").ToList();
+            return DbContext.Runners.Include("Residence").Include("Laps").OrderBy(x => x.Residence.Name).OrderBy(x => x.FirstName).ToList();
         }
 
         public static async Task<IEnumerable<QueueRunner>> GetAllQueueRunnersAsync()
