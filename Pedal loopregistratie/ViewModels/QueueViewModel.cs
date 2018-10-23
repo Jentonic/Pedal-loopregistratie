@@ -8,10 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace Pedal_loopregistratie.ViewModels
 {
@@ -36,6 +38,9 @@ namespace Pedal_loopregistratie.ViewModels
                 this.OnPropertyChanged();
             }
         }
+
+        //public Stopwatch Stopwatch { get; private set; } = new Stopwatch();
+        //public DispatcherTimer Timer { get; private set; } = new DispatcherTimer();
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -83,6 +88,16 @@ namespace Pedal_loopregistratie.ViewModels
             }
         }
 
+        //public void PauseTimer()
+        //{
+        //    Stopwatch.Stop();
+        //}
+
+        //public void StartTimer()
+        //{
+        //    Stopwatch.Start();
+        //}
+
         public void AddRunner(Runner runner)
         {
             var insert = new QueueRunner { Position = QueueRunners.Count + 1, Runner = runner, RunnerId = runner.RunnerId };
@@ -100,7 +115,7 @@ namespace Pedal_loopregistratie.ViewModels
             //QueueRunners.Add(data);
         }
 
-        public void QueueNextRunner()
+        public void QueueNextRunner(TimeSpan ts)
         {
             //Update all position in the queue
             var helper = QueueRunners.ToList();
@@ -115,16 +130,23 @@ namespace Pedal_loopregistratie.ViewModels
             //Register run and Update database
             if (CurrentRunner != null && CurrentRunner != null)
             {
-                RegisterRun();
+                RegisterRun(ts);
                 DataService.RemoveFromQueueAsync(CurrentRunner);
             }
 
             UpdateCollections();
         }
 
-        private static void RegisterRun()
+        private void RegisterRun(TimeSpan ts)
         {
+            double ms = ts.TotalMilliseconds;
+            int distance = 480;
+            double metermillisecond = distance / ms;
+            double metersecond = metermillisecond*1000;
+            double kmh = metermillisecond * 3600;
 
+            Lap lap = new Lap { Milliseconds = ms, AverageSpeedS = metermillisecond, AverageSpeedKmH = kmh, Runner = CurrentRunner.Runner, RunnerId = CurrentRunner.Runner.RunnerId };
+            DataService.SaveLapAsync(lap);
         }
 
         public void MoveUp(QueueRunner selectedItem)

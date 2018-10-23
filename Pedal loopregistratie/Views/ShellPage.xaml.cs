@@ -23,8 +23,8 @@ namespace Pedal_loopregistratie.Views
             HideNavViewBackButton();
             DataContext = ViewModel;
             ViewModel.Initialize(shellFrame, navigationView);
-            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator);
-            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
+            //KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator);
+            //KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
         }
 
         private void HideNavViewBackButton()

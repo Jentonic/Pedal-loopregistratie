@@ -2,6 +2,7 @@
 using Pedal_loopregistratie_Model.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -21,6 +22,9 @@ namespace Pedal_loopregistratie.Views
 {
     public sealed partial class QueuePage : Page
     {
+        DispatcherTimer dt = new DispatcherTimer();
+        Stopwatch stopwatch = new Stopwatch();
+
         private QueueViewModel ViewModel
         {
             get { return DataContext as QueueViewModel; }
@@ -30,6 +34,17 @@ namespace Pedal_loopregistratie.Views
         {
             this.InitializeComponent();
             Loaded += QueuePage_Loaded;
+            dt.Tick += Dt_Tick;
+            dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
+        }
+
+        private void Dt_Tick(object sender, object e)
+        {
+            if (stopwatch.IsRunning)
+            {
+                TimeSpan ts = stopwatch.Elapsed;
+                TimerTextBlock.Text = ts.Minutes.ToString() + ":" + ts.Seconds.ToString() + "." + ts.Milliseconds.ToString();
+            }
         }
 
         private void QueuePage_Loaded(object sender, RoutedEventArgs e)
@@ -65,7 +80,11 @@ namespace Pedal_loopregistratie.Views
 
         private void NextRunnerButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            ViewModel.QueueNextRunner();
+            if (stopwatch.IsRunning || dt.IsEnabled)
+            {
+                var helper = stopwatch.Elapsed;
+                ViewModel.QueueNextRunner(helper);
+            }
         }
 
         private void RefreshButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -73,5 +92,21 @@ namespace Pedal_loopregistratie.Views
             //ViewModel.Refresh();
         }
         #endregion
+
+        private void StartTimerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!stopwatch.IsRunning)
+                stopwatch.Start();
+            if (!dt.IsEnabled)
+                dt.Start();
+            //ViewModel.StartTimer();
+        }
+
+        private void PauseTimerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (stopwatch.IsRunning)
+                stopwatch.Stop();
+            //ViewModel.PauseTimer();
+        }
     }
 }

@@ -8,7 +8,7 @@ using Pedal_loopregistratie_Model.DAL;
 namespace Pedal_loopregistratie_Model.Migrations
 {
     [DbContext(typeof(PedalDbContext))]
-    [Migration("20181021175656_Initial")]
+    [Migration("20181023103709_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,9 +22,11 @@ namespace Pedal_loopregistratie_Model.Migrations
                     b.Property<int>("LapId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("AverageSpeed");
+                    b.Property<double>("AverageSpeedKmH");
 
-                    b.Property<int>("Milliseconds");
+                    b.Property<double>("AverageSpeedS");
+
+                    b.Property<double>("Milliseconds");
 
                     b.Property<int>("RunnerId");
 

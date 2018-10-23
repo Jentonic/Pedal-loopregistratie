@@ -48,8 +48,9 @@ namespace Pedal_loopregistratie_Model.Migrations
                 {
                     LapId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Milliseconds = table.Column<int>(nullable: false),
-                    AverageSpeed = table.Column<double>(nullable: false),
+                    Milliseconds = table.Column<double>(nullable: false),
+                    AverageSpeedKmH = table.Column<double>(nullable: false),
+                    AverageSpeedS = table.Column<double>(nullable: false),
                     RunnerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

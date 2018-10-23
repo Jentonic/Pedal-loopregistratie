@@ -20,9 +20,11 @@ namespace Pedal_loopregistratie_Model.Migrations
                     b.Property<int>("LapId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("AverageSpeed");
+                    b.Property<double>("AverageSpeedKmH");
 
-                    b.Property<int>("Milliseconds");
+                    b.Property<double>("AverageSpeedS");
+
+                    b.Property<double>("Milliseconds");
 
                     b.Property<int>("RunnerId");
 

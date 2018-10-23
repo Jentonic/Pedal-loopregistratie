@@ -72,5 +72,12 @@ namespace Pedal_loopregistratie.Services
             DbContext.QueueRunners.Remove(queueRunner);
             DbContext.SaveChanges();
         }
+
+        public static async void SaveLapAsync(Lap lap)
+        {
+            await Task.CompletedTask;
+            DbContext.Laps.Add(lap);
+            DbContext.SaveChanges();
+        }
     }
 }
