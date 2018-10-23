@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Pedal_loopregistratie_Model.Models
@@ -13,5 +14,15 @@ namespace Pedal_loopregistratie_Model.Models
 
         public int RunnerId { get; set; }
         public Runner Runner { get; set; }
+
+        [NotMapped]
+        public string Time
+        {
+            get
+            {
+                var ts = TimeSpan.FromMilliseconds(Milliseconds);
+                return ts.Minutes + ":" + ts.Seconds + "." + ts.Milliseconds;
+            }
+        }
     }
 }

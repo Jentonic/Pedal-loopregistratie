@@ -80,11 +80,17 @@ namespace Pedal_loopregistratie.Views
 
         private void NextRunnerButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            if (!stopwatch.IsRunning && !dt.IsEnabled)
+            {
+                stopwatch.Start();
+                dt.Start();
+            }
             if (stopwatch.IsRunning || dt.IsEnabled)
             {
                 var helper = stopwatch.Elapsed;
                 ViewModel.QueueNextRunner(helper);
             }
+            stopwatch.Restart();
         }
 
         private void RefreshButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

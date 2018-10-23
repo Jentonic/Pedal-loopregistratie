@@ -5,6 +5,7 @@ using Pedal_loopregistratie_Model;
 using Pedal_loopregistratie_Model.DAL;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
+using System.Linq;
 
 namespace Pedal_loopregistratie
 {
@@ -25,11 +26,8 @@ namespace Pedal_loopregistratie
             _activationService = new Lazy<ActivationService>(CreateActivationService);
 
             // Replaced by static init method in dataservice
-            //using (var db = new PedalDbContext())
-            //{
-            //    db.DoMigrate();
 
-            //    // Ignore
+
             //    // Testcode below
 
             //    //var lele = "lele";
@@ -39,13 +37,32 @@ namespace Pedal_loopregistratie
             //    //db.Residences.Remove(residence);
             //    //db.SaveChanges();
             //    //var lelele = "lelele";
-            //}
             Initialise();
+            // TestCode
 
-            //Ugly testcode, move this to migration if enough time
-            //DataService.DbContext.Runners.Add(new Runner { FirstName = "Jenne", LastName = "Baeten", ResidenceId = 2 });
+            // Add new Residence
+            // var residence = new Residence { ResidenceId = , Name = "", Description = "", ImageString = "" };
+            // DataService.DbContext.Residences.Add(residence);
+            // DataService.DbContext.SaveChanges();
+
+            // Update Residence
+            //var residence = DataService.DbContext.Residences.FirstOrDefault(x => x.Name == "");
+            //residence.Description = "";
+            //DataService.DbContext.Residences.Update(residence);
             //DataService.DbContext.SaveChanges();
-        }
+
+            // Clear Database
+            //DataService.DbContext.Laps.RemoveRange(DataService.DbContext.Laps);
+            //DataService.DbContext.QueueRunners.RemoveRange(DataService.DbContext.QueueRunners);
+            //DataService.DbContext.Runners.RemoveRange(DataService.DbContext.Runners);
+            //Initialise();
+            //DataService.DbContext.SaveChanges();
+        
+
+        //Ugly testcode, move this to migration if enough time
+        //DataService.DbContext.Runners.Add(new Runner { FirstName = "Jenne", LastName = "Baeten", ResidenceId = 2 });
+        //DataService.DbContext.SaveChanges();
+    }
 
         private void Initialise()
         {

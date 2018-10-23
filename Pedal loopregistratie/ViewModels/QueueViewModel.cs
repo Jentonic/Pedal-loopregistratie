@@ -124,12 +124,12 @@ namespace Pedal_loopregistratie.ViewModels
                 item.Position -= 1;
             }
 
-            //Update database
-            DataService.UpdateQueueAsync(helper);
 
             //Register run and Update database
-            if (CurrentRunner != null && CurrentRunner != null)
+            if (CurrentRunner != null && helper.Count() != 0)
             {
+                //Update database
+                DataService.UpdateQueueAsync(helper);
                 RegisterRun(ts);
                 DataService.RemoveFromQueueAsync(CurrentRunner);
             }

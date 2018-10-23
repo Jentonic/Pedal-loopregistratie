@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>Pedal_loopregistratie</value>
+    <value>Pedal Loopregistratie</value>
     <comment>Application display name</comment>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>Pedal_loopregistratie</value>
+    <value>Pedal Loopregistratie</value>
     <comment>Application description</comment>
   </data>
   <data name="ExceptionNavigationServiceExPageNotFound" xml:space="preserve">
@@ -150,7 +150,7 @@
     <comment>No selection text for Residences</comment>
   </data>
   <data name="Shell_Residences.Content" xml:space="preserve">
-    <value>Residences</value>
+    <value>Residenties</value>
     <comment>Navigation view item name for Residences</comment>
   </data>
   <data name="Runners_NoSelection.Text" xml:space="preserve">
@@ -158,7 +158,11 @@
     <comment>No selection text for Runners</comment>
   </data>
   <data name="Shell_Runners.Content" xml:space="preserve">
-    <value>Runners</value>
+    <value>Lopers</value>
     <comment>Navigation view item name for Runners</comment>
+  </data>
+  <data name="Shell_Laps.Content" xml:space="preserve">
+    <value>Rondes</value>
+    <comment>Navigation view item name for Laps</comment>
   </data>
 </root>

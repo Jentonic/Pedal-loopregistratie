@@ -22,6 +22,7 @@ namespace Pedal_loopregistratie.ViewModels
             Register<ResidencesViewModel, ResidencesPage>();
             Register<RunnersViewModel, RunnersPage>();
             Register<QueueViewModel, QueuePage>();
+            Register<LapsDataGridViewModel, LapsDataGridPage>();
         }
 
         public RunnersViewModel RunnersViewModel => ServiceLocator.Current.GetInstance<RunnersViewModel>();
@@ -35,6 +36,8 @@ namespace Pedal_loopregistratie.ViewModels
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 
         public QueueViewModel QueueViewModel => ServiceLocator.Current.GetInstance<QueueViewModel>();
+
+        public LapsDataGridViewModel LapsDataGridViewModel => ServiceLocator.Current.GetInstance<LapsDataGridViewModel>();
 
         public void Register<VM, V>()
             where VM : class

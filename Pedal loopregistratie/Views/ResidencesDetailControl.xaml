@@ -9,8 +9,8 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <ScrollViewer Name="ForegroundElement" VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" Padding="12,0">
-        <StackPanel HorizontalAlignment="Left">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,8,0,0">
+        <StackPanel HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0,8,0,0">
                 <!--<FontIcon
                     FontSize="40"
                     Glyph="{x:Bind MasterMenuItem.Symbol, Mode=OneWay}"
@@ -22,8 +22,22 @@
                     Margin="12,0,0,0"
                     Text="{x:Bind MasterMenuItem.Name, Mode=OneWay}"
                     Style="{StaticResource SubheaderTextBlockStyle}" />
+
             </StackPanel>
             <StackPanel Name="block" Padding="0,15,0,0">
+
+                <TextBox
+                    HorizontalAlignment="Left"
+                    Margin="12,0,0,0"
+                    Header="Aantal Lopers"
+                    Text="{x:Bind MasterMenuItem.Runners.Count, Mode=OneWay}"
+                    IsReadOnly="True"/>
+                <TextBox
+                    HorizontalAlignment="Left"
+                    x:Name="Laps"
+                    Margin="12,0,0,12"
+                    Header="Aantal Rondes"
+                    IsReadOnly="True"/>
                 
                 <TextBlock Text="Beschrijving" Style="{StaticResource SubtitleTextBlockStyle}"/>
                 <TextBlock Text="{x:Bind MasterMenuItem.Description, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />

@@ -11,9 +11,8 @@
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
+            >
+            <Image Source="/Assets/Logo-Pedal.png"/>
             <!--<TextBlock>
                 Home page.
                 Content:

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,16 @@ namespace Pedal_loopregistratie.Services
             DbContext.DoMigrate();
         }
 
+        public static IEnumerable<Lap> GetLapsData()
+        {
+            return DbContext.Laps.Include("Runner").Include("Runner.Residence").OrderBy(x => x.LapId).ToList();
+        }
+
         public static async Task<IEnumerable<Residence>> GetResidencesAsync()
         {
             //jezus, such shitcode (copied that from generated code example)
             await Task.CompletedTask;
-            return DbContext.Residences.Include("Runners").ToList();
+            return DbContext.Residences.Include("Runners").Include("Runners.Laps").ToList();
         }
 
         public static async Task<IEnumerable<Runner>> GetRunnersAsync()

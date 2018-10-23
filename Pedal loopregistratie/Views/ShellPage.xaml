@@ -34,7 +34,8 @@
             <NavigationViewItem x:Uid="Shell_Home" Icon="Home" helpers:NavHelper.NavigateTo="Pedal_loopregistratie.ViewModels.HomeViewModel" />
             <NavigationViewItem x:Uid="Shell_Residences" Icon="Street" helpers:NavHelper.NavigateTo="Pedal_loopregistratie.ViewModels.ResidencesViewModel" />
             <NavigationViewItem x:Uid="Shell_Runners" Icon="People" helpers:NavHelper.NavigateTo="Pedal_loopregistratie.ViewModels.RunnersViewModel" />
-        </NavigationView.MenuItems>
+            <NavigationViewItem x:Uid="Shell_Laps" Icon="List" helpers:NavHelper.NavigateTo="Pedal_loopregistratie.ViewModels.LapsDataGridViewModel" />
+            </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>
                 <TextBlock
