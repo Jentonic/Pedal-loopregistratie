@@ -43,7 +43,13 @@ namespace Pedal_loopregistratie.ViewModels
                 AllRunners.Add(item);
             }
 
-            if (viewState == MasterDetailsViewState.Both)
+            if (NewRunnerSelectedService.NewRunner)
+            {
+                SetNewRunner(NewRunnerSelectedService.runner);
+                NewRunnerSelectedService.NewRunner = false;
+            }
+
+            else if (viewState == MasterDetailsViewState.Both)
             {
                 Selected = Runners.First();
             }
@@ -62,6 +68,13 @@ namespace Pedal_loopregistratie.ViewModels
         public void NotifyQueue()
         {
             MessengerInstance.Send<NotificationMessage>(new NotificationMessage("New runner in queue"));
+        }
+
+        public void SetNewRunner(Runner runner)
+        {
+            var newRunner = AllRunners.Where(p => p.FirstName.Contains(runner.FirstName) && p.LastName.Contains(runner.LastName)).First();
+            if (newRunner != null)
+                Selected = newRunner;
         }
     }
 }

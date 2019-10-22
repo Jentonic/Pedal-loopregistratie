@@ -22,7 +22,7 @@ namespace Pedal_loopregistratie.ViewModels
 
         public ObservableCollection<Lap> GetLaps()
         {
-            var helper = DataService.GetLapsData().ToList();
+            var helper = DataService.GetLapsData().OrderByDescending(x => x.LapId).ToList();
             var collection = new ObservableCollection<Lap>();
             foreach (var item in helper)
             {

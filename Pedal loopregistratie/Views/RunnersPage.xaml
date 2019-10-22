@@ -10,11 +10,11 @@
     xmlns:model="using:Pedal_loopregistratie_Model"
     xmlns:views="using:Pedal_loopregistratie.Views"
     mc:Ignorable="d">
-    <Page.Transitions>
+    <!--<Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition />
         </TransitionCollection>
-    </Page.Transitions>
+    </Page.Transitions>-->
     <Page.Resources>
         <DataTemplate x:Key="ItemTemplate" x:DataType="model:Runner">
             <Grid Height="64" Padding="0,8">

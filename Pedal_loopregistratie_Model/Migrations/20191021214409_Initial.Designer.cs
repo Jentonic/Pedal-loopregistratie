@@ -8,7 +8,7 @@ using Pedal_loopregistratie_Model.DAL;
 namespace Pedal_loopregistratie_Model.Migrations
 {
     [DbContext(typeof(PedalDbContext))]
-    [Migration("20181023103709_Initial")]
+    [Migration("20191021214409_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,7 +76,10 @@ namespace Pedal_loopregistratie_Model.Migrations
                         new { ResidenceId = 5, Description = "", Name = "Don Bosco" },
                         new { ResidenceId = 6, Description = "", Name = "Regina Mundi" },
                         new { ResidenceId = 7, Description = "", Name = "Copal" },
-                        new { ResidenceId = 8, Description = "", Name = "Cruysberghs" }
+                        new { ResidenceId = 8, Description = "", Name = "Cruysberghs" },
+                        new { ResidenceId = 9, Description = "", Name = "Justus Lipsius" },
+                        new { ResidenceId = 10, Description = "", Name = "Waterview" },
+                        new { ResidenceId = 11, Description = "", Name = "Studax" }
                     );
                 });
 

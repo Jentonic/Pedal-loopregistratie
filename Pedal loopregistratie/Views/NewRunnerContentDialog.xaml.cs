@@ -51,6 +51,7 @@ namespace Pedal_loopregistratie.Views
                     ResidenceId = residence.ResidenceId
                 };
                 DataService.AddNewRunnerAsync(runner);
+                NewRunnerSelectedService.SetNewRunner(runner);
             }
         }
 

@@ -6,6 +6,7 @@ using Pedal_loopregistratie.ViewModels;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace Pedal_loopregistratie.Views
 {
@@ -33,7 +34,7 @@ namespace Pedal_loopregistratie.Views
             ContentDialogResult result = await newRunnerContentDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                Frame.Navigate(typeof(RunnersPage), "Force refresh");
+                Frame.Navigate(typeof(RunnersPage), "Force refresh", new SuppressNavigationTransitionInfo());
                 //var navserv = new NavigationServiceEx();
                 //navserv.Navigate();
             }

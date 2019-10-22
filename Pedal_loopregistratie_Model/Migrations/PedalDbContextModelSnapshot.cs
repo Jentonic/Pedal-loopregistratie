@@ -74,7 +74,10 @@ namespace Pedal_loopregistratie_Model.Migrations
                         new { ResidenceId = 5, Description = "", Name = "Don Bosco" },
                         new { ResidenceId = 6, Description = "", Name = "Regina Mundi" },
                         new { ResidenceId = 7, Description = "", Name = "Copal" },
-                        new { ResidenceId = 8, Description = "", Name = "Cruysberghs" }
+                        new { ResidenceId = 8, Description = "", Name = "Cruysberghs" },
+                        new { ResidenceId = 9, Description = "", Name = "Justus Lipsius" },
+                        new { ResidenceId = 10, Description = "", Name = "Waterview" },
+                        new { ResidenceId = 11, Description = "", Name = "Studax" }
                     );
                 });
 

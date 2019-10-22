@@ -124,6 +124,21 @@ namespace Pedal_loopregistratie_Model.Migrations
                 columns: new[] { "ResidenceId", "Description", "ImageString", "Name" },
                 values: new object[] { 8, "", null, "Cruysberghs" });
 
+            migrationBuilder.InsertData(
+                table: "Residences",
+                columns: new[] { "ResidenceId", "Description", "ImageString", "Name" },
+                values: new object[] { 9, "", null, "Justus Lipsius" });
+
+            migrationBuilder.InsertData(
+                table: "Residences",
+                columns: new[] { "ResidenceId", "Description", "ImageString", "Name" },
+                values: new object[] { 10, "", null, "Waterview" });
+
+            migrationBuilder.InsertData(
+                table: "Residences",
+                columns: new[] { "ResidenceId", "Description", "ImageString", "Name" },
+                values: new object[] { 11, "", null, "Studax" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Laps_RunnerId",
                 table: "Laps",

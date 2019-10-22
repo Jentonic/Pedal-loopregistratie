@@ -30,6 +30,9 @@ namespace Pedal_loopregistratie_Model.DAL
             modelBuilder.Entity<Residence>().HasData(new Residence() { ResidenceId = 6, Name = "Regina Mundi", Description = "" });
             modelBuilder.Entity<Residence>().HasData(new Residence() { ResidenceId = 7, Name = "Copal", Description = "" });
             modelBuilder.Entity<Residence>().HasData(new Residence() { ResidenceId = 8, Name = "Cruysberghs", Description = "" });
+            modelBuilder.Entity<Residence>().HasData(new Residence() { ResidenceId = 9, Name = "Justus Lipsius", Description = "" });
+            modelBuilder.Entity<Residence>().HasData(new Residence() { ResidenceId = 10, Name = "Waterview", Description = "" });
+            modelBuilder.Entity<Residence>().HasData(new Residence() { ResidenceId = 11, Name = "Studax", Description = "" });
         }
 
         public void DoMigrate()
